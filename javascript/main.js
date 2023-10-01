@@ -22,7 +22,7 @@ const rates = {
 // Función para interactuar con el cliente
 function runCarRentalSimulator() {
   const nombreIngresado = prompt("Ingresar nombre");
-  alert("Bienvenido a Classy Cars, " + nombreIngresado + ". Aquí podrás encontrar el mejor auto y precio de alquiler.");
+  alert("Bienvenido a Classy Cars, " + nombreIngresado + ". Aquí podrás encontrar el mejor auto y precio de alquiler. Presione 'aceptar' o 'enter' para ver las mejores opciones de autos.");
   let continuar = true;
 
   while (continuar) {
@@ -54,7 +54,7 @@ function runCarRentalSimulator() {
       } else if (selectedServiceInput === 'lujo' || selectedServiceInput === '3') {
         selectedService = 'lujo';
       } else {
-        alert("Tipo de servicio no válido. Por favor, seleccione un servicio válido.");
+        alert("Tipo de servicio no válido. Por favor, seleccione un servicio nuevamente.");
         continue;
       }
 
@@ -63,18 +63,17 @@ function runCarRentalSimulator() {
       // DIAS DE ALQUILER
       const rentalDays = parseInt(prompt("Número de días de alquiler:"));
       if (isNaN(rentalDays) || rentalDays <= 0) {
-        alert("Número de días no válido. Por favor, ingrese un número válido de días de alquiler.");
+        alert("Número de días no válido. Por favor, ingrese nuevamente un número de días de alquiler.");
         continue; 
       }
 
       // Calculo final
       const totalCost = calculateTotal(selectedService, rentalDays);
-      alert(`El costo total del alquiler de un ${selectedCar} (${selectedService}) por ${rentalDays} días es: $${totalCost}`);
+      alert(`${nombreIngresado} El costo total del alquiler de un ${selectedCar} (${selectedService}) por ${rentalDays} días es: $${totalCost}`);
     } else {
       alert("Opción no válida. Por favor, seleccione un automóvil válido.");
     }
   }
 }
 
-// Ejecutar el simulador
 runCarRentalSimulator();
