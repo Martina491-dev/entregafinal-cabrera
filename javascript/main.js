@@ -37,7 +37,7 @@ function runCarRentalSimulator() {
 
     if (selectedCarNumber === 'salir') {
       alert("Saliendo del simulador. ¡Hasta luego!");
-      continuar = false;
+      continuar = true;
     } else if (autosClasicos[selectedCarNumber]) {
       const selectedCar = autosClasicos[selectedCarNumber];
 
