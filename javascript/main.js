@@ -1,8 +1,8 @@
 //tarifas
 const rates = {
-    economy: 30,
-    standard: 50,
-    luxury: 100,
+    economico: 30,
+    estandar: 50,
+    lujo: 100,
   };
   
   //Autos
@@ -19,52 +19,62 @@ const rates = {
     return rate * rentalDays;
   }
   
-  // Función para interactuar con el cliente
-  function runCarRentalSimulator() {
-    const nombreIngresado = prompt("Ingresar nombre");
-    alert("Bienvenido a Classy Cars, " + nombreIngresado + ". Aquí podrás encontrar el mejor auto y precio de alquiler.");
-  
-    while (true) {
-      console.log("Por favor, seleccione un automóvil:");
-      for (const key in autosClasicos) {
-        if (autosClasicos.hasOwnProperty(key)) {
-          console.log(`${key}: ${autosClasicos[key]}`);
-        }
+// Función para interactuar con el cliente
+function runCarRentalSimulator() {
+  const nombreIngresado = prompt("Ingresar nombre");
+  alert("Bienvenido a Classy Cars, " + nombreIngresado + ". Aquí podrás encontrar el mejor auto y precio de alquiler.");
+  let continuar = true;
+
+  while (continuar) {
+    console.log("Por favor, seleccione un automóvil:");
+    for (const key in autosClasicos) {
+      if (autosClasicos.hasOwnProperty(key)) {
+        console.log(`${key}: ${autosClasicos[key]}`);
       }
-   
-      const selectedCarNumber = prompt("Seleccione un automóvil 1)Ford Mustang, 2)Eleanor Pony, 3) Lamborghini Miuraz, 4) Aston Martin o escriba 'salir' para finalizar:");
-      if (selectedCarNumber === 'salir') {
-        alert("Saliendo del simulador. ¡Hasta luego!");
+    }
+
+    const selectedCarNumber = prompt("Seleccione un automóvil 1)Ford Mustang, 2)Eleanor Pony, 3) Lamborghini Miuraz, 4) Aston Martin o escriba 'salir' para finalizar:").toLowerCase();
+
+    if (selectedCarNumber === 'salir') {
+      alert("Saliendo del simulador. ¡Hasta luego!");
+      continuar = false;
+    } else if (autosClasicos[selectedCarNumber]) {
+      const selectedCar = autosClasicos[selectedCarNumber];
+
+      // SERVICIO QUE SE ELIGE
+      console.log("Seleccione el tipo de servicio: 1) economico, 2) estandar, 3) lujo o escriba 'economico', 'estandar' o 'lujo'");
+      const selectedServiceInput = prompt("Tipo de servicio: 1) economico 30USD, 2) estandar 50USD, 3) lujo 100USD o escriba 'economico', 'estandar' o 'lujo'").toLowerCase();
+
+      let selectedService;
+      
+      if (selectedServiceInput === 'economico' || selectedServiceInput === '1') {
+        selectedService = 'economico';
+      } else if (selectedServiceInput === 'estandar' || selectedServiceInput === '2') {
+        selectedService = 'estandar';
+      } else if (selectedServiceInput === 'lujo' || selectedServiceInput === '3') {
+        selectedService = 'lujo';
+      } else {
+        alert("Tipo de servicio no válido. Por favor, seleccione un servicio válido.");
         continue;
       }
-  
-      const selectedCar = autosClasicos[selectedCarNumber];
-      if(!selectedCar) {
-        alert("Opción no válida. Por favor, seleccione un automóvil válido.");
-        continue; 
-      }
-      // SERVICIO QUE SE ELIGE
-      console.log("Seleccione el tipo de servicio: economy, standard o luxury");
-      const selectedService = prompt("Tipo de servicio: economy 30USD, standard 50USD, luxury 100USD");
-      if (!rates[selectedService]) {
-        alert("Tipo de servicio no válido. Por favor, seleccione un servicio válido.");
-        continue; 
-      }
-  
+
+      
+
       // DIAS DE ALQUILER
       const rentalDays = parseInt(prompt("Número de días de alquiler:"));
       if (isNaN(rentalDays) || rentalDays <= 0) {
         alert("Número de días no válido. Por favor, ingrese un número válido de días de alquiler.");
         continue; 
       }
-     //calculo final
+
+      // Calculo final
       const totalCost = calculateTotal(selectedService, rentalDays);
       alert(`El costo total del alquiler de un ${selectedCar} (${selectedService}) por ${rentalDays} días es: $${totalCost}`);
-      return;
+    } else {
+      alert("Opción no válida. Por favor, seleccione un automóvil válido.");
     }
-    
   }
+}
 
-  // Ejecutar el simulador
-  runCarRentalSimulator();
-  
+// Ejecutar el simulador
+runCarRentalSimulator();
