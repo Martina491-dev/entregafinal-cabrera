@@ -1,0 +1,39 @@
+/* Imágenes de alquiler */
+@media screen and (min-width: 769px) {
+  .img-fluid {
+    width: 100%;
+    height: 80vh;
+  }
+}
+.carousel-uno {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.carousel-item {
+  flex: 0 0 100%;
+}
+
+/* Caja para alquilar auto */
+.donde-estas {
+  background-color: burlywood;
+  opacity: 0.9;
+  color: black;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-row: auto;
+}
+
+.boton-uno {
+  color: black;
+  background-color: green;
+  border: none;
+  width: 90px;
+  height: 30px;
+}
