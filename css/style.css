@@ -28,7 +28,7 @@
     margin: 0;
     color: black;
   }
-  
+
 h2 {
     color: black;
     text-align: center;
@@ -39,6 +39,42 @@ h2 {
 .body-dos {
     background-image: url(../multimedia/fondo-textura-piedra-granulada-negra-o-fondo-textura-gris-oscuro_553949-1347.avif);
     background-size: auto 25%;
+  }
+
+  h3 {
+    background-color: bisque;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  /* Ventajas */
+.ventajas {
+    background-color: burlywood;
+  }
+  
+  .respuestas {
+    background-color: burlywood;
+  }
+  
+  /* FAQs */
+  .faq-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  
+  .question {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .answer {
+    padding: 10px;
+    background-color: #f5f5f5;
   }
 
   /*footer */
