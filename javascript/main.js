@@ -41,7 +41,7 @@ function rentCar() {
   let continuar = true;
 
   while (continuar) {
-    const opcion = prompt("Elija una opción:\n1. Ver lista de productos\n2. Alquilar un producto \n3. Filtar por precio \n4. Salir");
+    const opcion = prompt("Elija una opción:\n1. Ver lista de productos\n2. Alquilar un producto \n3. Filtrar por precio \n4. Salir");
 
     switch (opcion) {
       case '1':
