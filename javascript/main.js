@@ -1,79 +1,120 @@
 //tarifas
 const rates = {
-    economico: 30,
-    estandar: 50,
-    lujo: 100,
-  };
-  
-  //Autos
-  const autosClasicos = {
-    '1': 'Ford Mustang',
-    '2': 'Eleanor Pony',
-    '3': 'Lamborghini Miura',
-    '4': 'Aston Martin',
-  };
-  
-  // Función para calcular el costo total
-  function calculateTotal(selectedRate, rentalDays) {
-    const rate = rates[selectedRate] || 0;
-    return rate * rentalDays;
-  }
-  
+  economico: 30,
+  estandar: 50,
+  lujo: 100,
+};
+
+//Autos
+const autosClasicos = ['Ford Mustang', 'Eleanor Pony', 'Lamborghini Miura', 'Aston Martin', 'Jaguar E-Type'];
+
+// Función para calcular el costo total
+function calculateTotal(selectedRate, rentalDays) {
+  const rate = rates[selectedRate] || 0;
+  return rate * rentalDays;
+}
+
+// Función para mostrar el menú y obtener la opción del usuario
+function mostrarMenu() {
+  console.log("Menú de opciones:");
+  console.log("1. Ver automóviles disponibles");
+  console.log("2. Hacer una reserva");
+  console.log("3. Ver historial de alquileres");
+  console.log("4. Salir");
+  const opcion =parseInt(prompt("Por favor, seleccione una opción :\n 1) Ver autos disponibles \n 2) Hacer una reserva \n 3) Ver historial de alquiler \n 4) Salir\n"));
+  return parseInt(opcion);
+}
+
 // Función para interactuar con el cliente
 function runCarRentalSimulator() {
-  const nombreIngresado = prompt("Ingresar nombre");
+const nombreIngresado = prompt("Ingresar nombre").toLocaleLowerCase();
   alert("Bienvenido a Classy Cars, " + nombreIngresado + ". Aquí podrás encontrar el mejor auto y precio de alquiler. Presione 'aceptar' o 'enter' para ver las mejores opciones de autos.");
   let continuar = true;
 
-  while (continuar) {
-    console.log("Por favor, seleccione un automóvil:");
-    for (const key in autosClasicos) {
-      if (autosClasicos.hasOwnProperty(key)) {
-        console.log(`${key}: ${autosClasicos[key]}`);
+  let opcionSeleccionada;
+
+while (continuar) {
+  opcionSeleccionada = mostrarMenu();
+
+  switch (opcionSeleccionada) {
+    case 1:
+      console.log("Automóviles disponibles:");
+      alert("Automóviles disponibles:\n" + autosClasicos.join("\n"));
+      break;
+
+    case 2:
+      // Hacer una reserva
+      console.log("Por favor, seleccione un automóvil:");
+      for (const key in autosClasicos) {
+        if (autosClasicos.hasOwnProperty(key)) {
+          console.log(`${key}: ${autosClasicos[key]}`);
+        }
       }
-    }
-
-    const selectedCarNumber = prompt("Seleccione un automóvil 1)Ford Mustang, 2)Eleanor Pony, 3) Lamborghini Miuraz, 4) Aston Martin o escriba 'salir' para finalizar:").toLowerCase();
-
-    if (selectedCarNumber === 'salir') {
-      alert("Saliendo del simulador. ¡Hasta luego!");
-      continuar = true;
-    } else if (autosClasicos[selectedCarNumber]) {
-      const selectedCar = autosClasicos[selectedCarNumber];
-
-      // SERVICIO QUE SE ELIGE
-      console.log("Seleccione el tipo de servicio: 1) economico, 2) estandar, 3) lujo o escriba 'economico', 'estandar' o 'lujo'");
-      const selectedServiceInput = prompt("Tipo de servicio: 1) economico 30USD, 2) estandar 50USD, 3) lujo 100USD o escriba 'economico', 'estandar' o 'lujo'").toLowerCase();
-
-      let selectedService;
+    
+      const selectedCarNumber = parseInt(prompt("Seleccione un automóvil \n1)Ford Mustang, \n2)Eleanor Pony, \n3)Lamborghini Miura, \n4) Aston Martin, \n5)Jaguar E-Type \n6) Salir"));
       
-      if (selectedServiceInput === 'economico' || selectedServiceInput === '1') {
-        selectedService = 'economico';
-      } else if (selectedServiceInput === 'estandar' || selectedServiceInput === '2') {
-        selectedService = 'estandar';
-      } else if (selectedServiceInput === 'lujo' || selectedServiceInput === '3') {
-        selectedService = 'lujo';
+      if (selectedCarNumber === 6) {
+        alert("Saliendo del simulador. ¡Hasta luego!");
+        continuar = true;
+      } else if (selectedCarNumber >= 1 && selectedCarNumber <= autosClasicos.length) {
+        const selectedCarNumber = autosClasicos[selectedCarNumber - 1];
       } else {
-        alert("Tipo de servicio no válido. Por favor, seleccione un servicio nuevamente.");
-        continue;
-      }
+        alert("Opción no válida. Por favor, seleccione un automóvil válido.");
+      
+    
 
+        // SERVICIO QUE SE ELIGE
+        console.log("Seleccione el tipo de servicio: 1) económico, 2) estándar, 3) lujo");
+        const selectedServiceInput = parseInt(prompt("Tipo de servicio: \n1) económico 30USD, \n2) estándar 50USD, \n3) lujo 100USD"));
+
+        let selectedService;
+
+        switch (selectedServiceInput) {
+          case 1:
+            selectedService = 'economico';
+            break;
+          case 2:
+            selectedService = 'estandar';
+            break;
+          case 3:
+            selectedService = 'lujo';
+            break;
+          default:
+            alert("Tipo de servicio no válido. Por favor, seleccione un servicio nuevamente.");
+            return;
+        }
+
+        // DIAS DE ALQUILER
+        const rentalDays = parseInt(prompt("Número de días de alquiler:"));
+        if (isNaN(rentalDays) || rentalDays <= 0) {
+          alert("Número de días no válido. Por favor, ingrese nuevamente un número de días de alquiler.");
+          return
+        }
+
+        // Calculo final
+        const totalCost = calculateTotal(selectedService, rentalDays);
+        alert(`${nombreIngresado}, reservaste un ${selectedCar} (${selectedService}) por ${rentalDays} días. El costo total del alquiler es: $${totalCost}`);
+        alert("Opción no válida. Por favor, seleccione un automóvil válido.");
+        continuar = true;
+      }
+  
+    
+      return;
       
 
-      // DIAS DE ALQUILER
-      const rentalDays = parseInt(prompt("Número de días de alquiler:"));
-      if (isNaN(rentalDays) || rentalDays <= 0) {
-        alert("Número de días no válido. Por favor, ingrese nuevamente un número de días de alquiler.");
-        continue; 
-      }
+    case 3:
+      // Aquí puedes agregar la lógica para ver el historial de alquileres.
+      break;
 
-      // Calculo final
-      const totalCost = calculateTotal(selectedService, rentalDays);
-      alert(`${nombreIngresado} El costo total del alquiler de un ${selectedCar} (${selectedService}) por ${rentalDays} días es: $${totalCost}`);
-    } else {
-      alert("Opción no válida. Por favor, seleccione un automóvil válido.");
-    }
+    case 4:
+      alert("Saliendo del simulador. ¡Hasta luego!");
+    return;
+
+    default:
+      alert("Opción no válida. Por favor, seleccione una opción válida.");
+      return;
   }
+}
 }
 
 runCarRentalSimulator();
