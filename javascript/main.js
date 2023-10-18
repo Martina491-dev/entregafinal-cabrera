@@ -71,8 +71,7 @@ function rentCar() {
           } else {
             alert("No se encontraron productos dentro del rango de precio especificado.");
           }
-        } else {
-          alert("Precio no válido. Por favor, ingrese un número válido.");
+        } else {alert("Precio no válido. Por favor, ingrese un número válido.");
         }
         break;
       case '4':
