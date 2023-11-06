@@ -1,3 +1,5 @@
+const fechaRetiro= "10-11-2023"; "15-11-2023"; "20-11-2023"; "25-11-2023"; "30-11-2023"; "05-12-2023";
+const fechaDevolucion= "15-11-2023"; "20-11-2023"; "25-11-2023"; "30-11-2023"; "05-12-2023"; "10-12-2023";
 document.getElementById("guardarBtn").addEventListener("click", function() {
   const selectedModel = document.getElementById("modelo").value;
   const selectedFechaRetiro = document.getElementById("fecha-retiro").value;
