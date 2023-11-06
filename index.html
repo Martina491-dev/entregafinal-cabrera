@@ -8,8 +8,6 @@
     <meta name="description"
         content="Descubre nuestra amplia selección de autos en alquiler en Classy Cars. Explora nuestra colección de autos clásicos y únicos disponibles para alquiler. Aprovecha las ventajas de alquilar con nosotros y encuentra respuestas a tus preguntas rápidas sobre el proceso. Encuentra el auto perfecto para tu experiencia de alquiler en Classy Cars.">
 
-    <meta name="keywords" content="palabra clave 1, palabra clave 2, palabra clave 3">
-
     <title>En alquiler</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -22,37 +20,37 @@
     <header>
         <!--NAVEGADOR-->
         <section>
-          <div class="titulo-igual">
-            <h1>Classy Cars</h1>
-            <nav class="navbar navbar-expand-md navbar-light bg-light">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-    
-              <div class="collapse navbar-collapse  justify-content-center" id="navbarNav">
-                <ul class="inicio-uno navbar-nav ml-auto ">
-                  <li class="nav-item inicio">
-                    <a href="../index.html" title="INICIO" class=" nav-link ">Inicio</a>
-                  </li>
-                  <li class="nav-item inicio">
-                    <a href="venta.html" title="Autos en venta" class=" nav-link ">En venta</a>
-                  </li>
-                  <li class="nav-item inicio">
-                    <a href="alquiler.html" title="Autos en alquier" class="nav-link ">En alquiler</a>
-                  </li>
-                  <li class="nav-item inicio">
-                    <a href="sobre-nosotros.html" title="Quienes somos" class="nav-link ">Sobre Nosotros</a>
-                  </li>
-                  <li class=" nav-item inicio">
-                    <a href="modelos-unicos.html" title="Modelos Unicos" class="nav-link">Modelos Unicos</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-          </div>
+            <div class="titulo-igual">
+                <h1>Classy Cars</h1>
+                <nav class="navbar navbar-expand-md navbar-light bg-light">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse  justify-content-center" id="navbarNav">
+                        <ul class="inicio-uno navbar-nav ml-auto ">
+                            <li class="nav-item inicio">
+                                <a href="../index.html" title="INICIO" class=" nav-link ">Inicio</a>
+                            </li>
+                            <li class="nav-item inicio">
+                                <a href="venta.html" title="Autos en venta" class=" nav-link ">En venta</a>
+                            </li>
+                            <li class="nav-item inicio">
+                                <a href="alquiler.html" title="Autos en alquier" class="nav-link ">En alquiler</a>
+                            </li>
+                            <li class="nav-item inicio">
+                                <a href="sobre-nosotros.html" title="Quienes somos" class="nav-link ">Sobre Nosotros</a>
+                            </li>
+                            <li class=" nav-item inicio">
+                                <a href="modelos-unicos.html" title="Modelos Unicos" class="nav-link">Modelos Unicos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </section>
-      </header>
+    </header>
     <section>
         <h2 data-aos="zoom-out-down">Autos en alquiler</h2>
     </section>
@@ -149,17 +147,60 @@
     </section>
     <section class="cuadro-auto-dos">
         <div class="donde-estas" data-aos="zoom-in">
-            <label for="donde">Ubicacion</label>
-            <input type="" name="" placeholder="Mapa">
-            <label for="Fecha">Fecha y hora de retiro</label>
-            <input type="" name="" placeholder="calendario">
-            <label for="fechaDos">Fecha y hora de devolucion</label>
-            <input type="text" name="" placeholder="calendario">
             <div>
-                <label for="modelo">Que auto buscas?</label>
-                <input type="text" name="modelo" placeholder="Ingrese el modelo que busca">
-                <button class="botonUno">Buscar</button>
-            </div>
+                <label for="modelo">Seleccione un modelo de auto:</label>
+                <select id="modelo">
+                    <option>Presione aqui</option> 
+                  <option value="jaguar">Jaguar E-Type 60</option>
+                  <option value="ford">Ford Mustang</option>
+                  <option value="chevrolet Camaro">Chevrolet</option>
+                  <option value="aston martin">Aston Martin</option>
+                </select>
+              </div>
+            
+              <div>
+                <label for="fecha-retiro">Fecha de retiro:</label>
+                <select id="fecha-retiro">  
+                  <option>Presione aqui</option> 
+                  <option value="2023-11-10">10 de Noviembre de 2023</option>
+                  <option value="2023-11-15">15 de Noviembre de 2023</option>
+                  <option value="2023-11-20">20 de Noviembre de 2023</option>
+                  <option value="2023-11-25">25 de Noviembre de 2023</option>
+                  <option value="2023-11-30">30 de Noviembre de 2023</option>
+                  <option value="2023-12-05">05 de Diciembre de 2023</option>
+                </select>
+              </div>
+            
+              <div>
+                <label for="fecha-devolucion">Fecha de devolución:</label>
+                <select id="fecha-devolucion">
+                    <option value=>Presione aqui</option> 
+                  <option value="2023-11-15">15 de Noviembre de 2023</option>
+                  <option value="2023-11-20">20 de Noviembre de 2023</option>
+                  <option value="2023-11-25">25 de Noviembre de 2023</option>
+                  <option value="2023-11-30">30 de Noviembre de 2023</option>
+                  <option value="2023-12-05">05 de Diciembre de 2023</option>
+                  <option value="2023-12-10">10 de Diciembre de 2023</option>
+                </select>
+              </div>
+            
+              <div>
+                <label for="ubicacion-retiro">Lugar de retiro:</label>
+                <select id="ubicacion-retiro">
+                    <option value=>Presione aqui</option> 
+                  <option value="aeropuerto">Aeropuerto de Palermo</option>
+                  <option value="centro-ciudad">Centro de la Ciudad</option>
+                  <option value="estacion-tren">Estación de Tren Roca</option>
+                  <option value="oficina-local">Oficina Local en Puerto Madero</option>
+                </select>
+              </div>
+            
+              <div>
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" placeholder="Ingrese su correo electrónico">
+              </div>
+            
+              <button id="guardarBtn">Guardar Selección</button>
         </div>
     </section>
     <section>
@@ -211,10 +252,11 @@
 
             <div class="footer-items">
                 <ul class="lista-uno">
-                    <a href="/index.html" title="enlace para que al apretar el boton nos diriga a la pagina principal"> 
-                    <img class="logo" src="../multimedia/Classy Cars (1).png" alt="logo">
+                    <a href="/index.html" title="enlace para que al apretar el boton nos diriga a la pagina principal">
+                        <img class="logo" src="../multimedia/Classy Cars (1).png" alt="logo">
                     </a>
-                    <li class="lista-dos"><a href="../index.html" title="al apretar inicio te redirige a la pagina principal">Inicio</a></li>
+                    <li class="lista-dos"><a href="../index.html"
+                            title="al apretar inicio te redirige a la pagina principal">Inicio</a></li>
                     <li class="lista-dos"><a href="#">Autos nuevos</a></li>
                     <li class="lista-dos"><a href="#">Autos usados</a></li>
                     <li class="lista-dos"><a href="#">Trabaja con nosotros</a></li>
@@ -229,6 +271,8 @@
         <script>
             AOS.init();
         </script>
-    <script src="javascript/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="javascript/main.js"></script>
 </body>
+
 </html>
