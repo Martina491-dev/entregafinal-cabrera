@@ -179,3 +179,10 @@ h2 {
   width: 90px;
   height: 30px;
 }
+
+.mensaje {
+  background-color: rgb(123, 123, 225);
+  color: black;
+  text-align: center;
+  border-radius: 200px;
+}
