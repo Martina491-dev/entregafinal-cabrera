@@ -43,18 +43,16 @@ window.addEventListener("load", function() {
   const reservationsString = localStorage.getItem("reservations");
   if (reservationsString) {
     const reservations = JSON.parse(reservationsString);
-    const lastReservation = reservations[reservations.length - 1]; // Obtén la última reserva de la lista
+    const lastReservation = reservations[reservations.length - 1]; //última reserva 
 
     const mensajeElement = document.getElementById("mensaje");
-    mensajeElement.innerHTML = ''; // Borra el contenido existente
+    mensajeElement.innerHTML = ''; 
 
     if (lastReservation) {
-      // Agrega el mensaje "Última reserva guardada" como primer párrafo
       const messagePara = document.createElement("p");
       messagePara.textContent = "Última reserva guardada:";
       mensajeElement.appendChild(messagePara);
 
-      // Crea párrafos para cada detalle de la reserva y añádelos al elemento mensaje
       const details = [
         "Modelo: " + lastReservation.model,
         "Fecha de Retiro: " + lastReservation.fechaRetiro,
