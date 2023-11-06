@@ -24,7 +24,7 @@ document.getElementById("guardarBtn").addEventListener("click", function() {
     const fechaRetiroDate = new Date(selectedFechaRetiro);
     const fechaDevolucionDate = new Date(selectedFechaDevolucion);
 
-    if (fechaRetiroDate >= fechaDevolucionDate) {
+    if (fechaRetiroDate > fechaDevolucionDate) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
