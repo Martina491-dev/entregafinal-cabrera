@@ -13,8 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
 
-
-document.getElementById("guardarBtn").addEventListener("click", function() {
+document.getElementById("guardarBtn").addEventListener("click", function () {
   const selectedModel = document.getElementById("modelo").value;
   const selectedFechaRetiro = document.getElementById("fecha-retiro").value;
   const selectedFechaDevolucion = document.getElementById("fecha-devolucion").value;
@@ -22,8 +21,8 @@ document.getElementById("guardarBtn").addEventListener("click", function() {
   const userEmail = document.getElementById("email").value;
 
   if (
-    selectedFechaRetiro === "" || 
-    selectedFechaDevolucion === "" || 
+    selectedFechaRetiro === "" ||
+    selectedFechaDevolucion === "" ||
     userEmail === ""
   ) {
     Swal.fire({
@@ -35,11 +34,11 @@ document.getElementById("guardarBtn").addEventListener("click", function() {
     const fechaRetiroDate = new Date(selectedFechaRetiro);
     const fechaDevolucionDate = new Date(selectedFechaDevolucion);
 
-    if (fechaRetiroDate > fechaDevolucionDate) {
+    if (fechaRetiroDate >= fechaDevolucionDate) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'La fecha de retiro no puede ser igual o posterior a la fecha de devolución.',
+        text: 'La fecha de retiro debe ser anterior a la fecha de devolución.',
       });
     } else {
       const reservationDetails = {
@@ -60,7 +59,8 @@ document.getElementById("guardarBtn").addEventListener("click", function() {
 
       // Actualizar la última reserva
       updateLastReservation(reservationDetails);
-      
+
+      // Actualizar la URL de la solicitud POST para apuntar a tu función de Firebase
       fetch('https://martina491-dev.github.io/entregafinal-cabrera/', {
         method: 'POST',
         headers: {
@@ -68,38 +68,38 @@ document.getElementById("guardarBtn").addEventListener("click", function() {
         },
         body: JSON.stringify(reservationDetails),
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status} - ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Respuesta del servidor:', data);
-        updateLastReservation(reservationDetails);
-        Swal.fire({
-          icon: 'success',
-          title: 'Reserva realizada con éxito',
-          text: 'En breve le enviaremos detalles por correo electrónico.',
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Respuesta del servidor:', data);
+          updateLastReservation(reservationDetails);
+          Swal.fire({
+            icon: 'success',
+            title: 'Reserva realizada con éxito',
+            text: 'En breve le enviaremos detalles por correo electrónico.',
+          });
+        })
+        .catch(error => {
+          console.error('Error en la solicitud al servidor:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al procesar la reserva. Por favor, inténtelo nuevamente.',
+          });
         });
-      })
-      .catch(error => {
-        console.error('Error en la solicitud al servidor:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Hubo un error al procesar la reserva. Por favor, inténtelo nuevamente.',
-        });
-      });
     }
   }
 });
 
-// Función para actualizar la última reserva 
+// Función para actualizar la última reserva
 function updateLastReservation(reservation) {
   const mensajeElement = document.getElementById("mensaje");
   mensajeElement.innerHTML = '';
-  
+
   const messagePara = document.createElement("p");
   messagePara.textContent = "Última reserva guardada:";
   mensajeElement.appendChild(messagePara);
