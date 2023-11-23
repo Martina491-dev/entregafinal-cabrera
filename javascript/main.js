@@ -1,4 +1,6 @@
-// Configuración de Firebase
+// Importa solo lo que necesitas de Firebase
+import { initializeApp } from 'firebase/app';
+
 const firebaseConfig = {
   apiKey: "AIzaSyCLm4fv-FWmFHOZkHFLYiOk-bBqqD0mOKc",
   authDomain: "entregafinal-cabrera.firebaseapp.com",
@@ -12,6 +14,7 @@ const firebaseConfig = {
 // Inicialización de Firebase
 firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics();
+
 
 document.getElementById("guardarBtn").addEventListener("click", function () {
   const selectedModel = document.getElementById("modelo").value;
