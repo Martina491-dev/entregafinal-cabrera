@@ -63,7 +63,7 @@ document.getElementById("guardarBtn").addEventListener("click", function () {
       // Actualizar la última reserva
       updateLastReservation(reservationDetails);
 
-      // Actualizar la URL de la solicitud POST para apuntar a tu función de Firebase
+      
       fetch('https://martina491-dev.github.io/entregafinal-cabrera/', {
         method: 'POST',
         headers: {
@@ -97,7 +97,6 @@ document.getElementById("guardarBtn").addEventListener("click", function () {
     }
   }
 });
-
 // Función para actualizar la última reserva
 function updateLastReservation(reservation) {
   const mensajeElement = document.getElementById("mensaje");
