@@ -1,5 +1,20 @@
 {
   "dependencies": {
-    "firebase": "^10.6.0"
+    "firebase": "^10.6.0",
+    "sweetalert2": "^11.10.1"
+  },
+  "name": "entregafinal-cabrera",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }
