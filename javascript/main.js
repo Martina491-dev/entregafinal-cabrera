@@ -1,6 +1,4 @@
-//Instalacion de firebase
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCLm4fv-FWmFHOZkHFLYiOk-bBqqD0mOKc",
   authDomain: "entregafinal-cabrera.firebaseapp.com",
@@ -11,8 +9,10 @@ const firebaseConfig = {
   measurementId: "G-V1ZB3K6VV4"
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Inicialización de Firebase
+firebase.initializeApp(firebaseConfig);
+const analytics = firebase.analytics();
+
 
 document.getElementById("guardarBtn").addEventListener("click", function() {
   const selectedModel = document.getElementById("modelo").value;
