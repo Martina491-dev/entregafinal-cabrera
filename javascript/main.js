@@ -1,3 +1,5 @@
+
+document.getElementById("guardarBtn").addEventListener("click", function() {
 const modelosAutos = ["Jaguar E-Type 60", "Ford Mustang", "Chevrolet Camaro", "Aston Martin"];
 const fechasRetiro = ["10-11-2023", "15-11-2023", "20-11-2023", "25-11-2023", "30-11-2023", "05-12-2023"];
 const fechasDevolucion = ["15-11-2023", "20-11-2023", "25-11-2023", "30-11-2023", "05-12-2023", "10-12-2023"];
@@ -75,3 +77,40 @@ function updateLastReservation(reservation) {
     mensajeElement.appendChild(p);
   });
 }
+fetch('URL_DEL_SERVIDOR', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(reservationDetails),
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error(`Error: ${response.status} - ${response.statusText}`);
+  }
+  return response.json();
+})
+.then(data => {
+  
+  console.log('Respuesta del servidor:', data);
+  
+  
+  updateLastReservation(reservationDetails);
+  
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Reserva realizada con éxito',
+    text: 'En breve le enviaremos detalles por correo electrónico.',
+  });
+})
+.catch(error => {
+  console.error('Error en la solicitud al servidor:', error);
+  
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'Hubo un error al procesar la reserva. Por favor, inténtelo nuevamente.',
+  });
+});
+});
