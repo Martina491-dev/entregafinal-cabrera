@@ -1,9 +1,18 @@
+//Instalacion de firebase
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+const firebaseConfig = {
+  apiKey: "AIzaSyCLm4fv-FWmFHOZkHFLYiOk-bBqqD0mOKc",
+  authDomain: "entregafinal-cabrera.firebaseapp.com",
+  projectId: "entregafinal-cabrera",
+  storageBucket: "entregafinal-cabrera.appspot.com",
+  messagingSenderId: "722774666215",
+  appId: "1:722774666215:web:8c05983d153461346dab42",
+  measurementId: "G-V1ZB3K6VV4"
+};
 
-document.getElementById("guardarBtn").addEventListener("click", function() {
-const modelosAutos = ["Jaguar E-Type 60", "Ford Mustang", "Chevrolet Camaro", "Aston Martin"];
-const fechasRetiro = ["10-11-2023", "15-11-2023", "20-11-2023", "25-11-2023", "30-11-2023", "05-12-2023"];
-const fechasDevolucion = ["15-11-2023", "20-11-2023", "25-11-2023", "30-11-2023", "05-12-2023", "10-12-2023"];
-const ubicacionesRetiro = ["Aeropuerto de Palermo", "Centro de la Ciudad", "Estación de Tren Roca", "Oficina Local en Puerto Madero"];
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 document.getElementById("guardarBtn").addEventListener("click", function() {
   const selectedModel = document.getElementById("modelo").value;
@@ -51,6 +60,37 @@ document.getElementById("guardarBtn").addEventListener("click", function() {
 
       // Actualizar la última reserva
       updateLastReservation(reservationDetails);
+      
+      fetch('https://martina491-dev.github.io/entregafinal-cabrera/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationDetails),
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Respuesta del servidor:', data);
+        updateLastReservation(reservationDetails);
+        Swal.fire({
+          icon: 'success',
+          title: 'Reserva realizada con éxito',
+          text: 'En breve le enviaremos detalles por correo electrónico.',
+        });
+      })
+      .catch(error => {
+        console.error('Error en la solicitud al servidor:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Hubo un error al procesar la reserva. Por favor, inténtelo nuevamente.',
+        });
+      });
     }
   }
 });
@@ -77,40 +117,3 @@ function updateLastReservation(reservation) {
     mensajeElement.appendChild(p);
   });
 }
-fetch('URL_DEL_SERVIDOR', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(reservationDetails),
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error(`Error: ${response.status} - ${response.statusText}`);
-  }
-  return response.json();
-})
-.then(data => {
-  
-  console.log('Respuesta del servidor:', data);
-  
-  
-  updateLastReservation(reservationDetails);
-  
-
-  Swal.fire({
-    icon: 'success',
-    title: 'Reserva realizada con éxito',
-    text: 'En breve le enviaremos detalles por correo electrónico.',
-  });
-})
-.catch(error => {
-  console.error('Error en la solicitud al servidor:', error);
-  
-  Swal.fire({
-    icon: 'error',
-    title: 'Error',
-    text: 'Hubo un error al procesar la reserva. Por favor, inténtelo nuevamente.',
-  });
-});
-});
