@@ -44,10 +44,10 @@ document.getElementById("guardarBtn").addEventListener("click", function () {
         email: userEmail,
       };
       
-      // Actualizar la última reserva
+    
       updateLastReservation(reservationDetails);
 
-      // Realizar la reserva
+    
       makeReservation(reservationDetails);
     }
   }
