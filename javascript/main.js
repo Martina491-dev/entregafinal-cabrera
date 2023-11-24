@@ -43,52 +43,16 @@ document.getElementById("guardarBtn").addEventListener("click", function () {
         ubicacionRetiro: selectedUbicacionRetiro,
         email: userEmail,
       };
-      let reservations = JSON.parse(localStorage.getItem("reservations")) || [];
-      reservations.push(reservationDetails);
-      localStorage.setItem("reservations", JSON.stringify(reservations));
-      Swal.fire({
-        icon: 'success',
-        title: 'Reserva realizada con éxito',
-        text: 'En breve le enviaremos detalles por correo electrónico.',
-      });
-
+      
       // Actualizar la última reserva
       updateLastReservation(reservationDetails);
 
-      
-      fetch('https://martina491-dev.github.io/entregafinal-cabrera/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reservationDetails),
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('Respuesta del servidor:', data);
-          updateLastReservation(reservationDetails);
-          Swal.fire({
-            icon: 'success',
-            title: 'Reserva realizada con éxito',
-            text: 'En breve le enviaremos detalles por correo electrónico.',
-          });
-        })
-        .catch(error => {
-          console.error('Error en la solicitud al servidor:', error);
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Hubo un error al procesar la reserva. Por favor, inténtelo nuevamente.',
-          });
-        });
+      // Realizar la reserva
+      makeReservation(reservationDetails);
     }
   }
 });
+
 // Función para actualizar la última reserva
 function updateLastReservation(reservation) {
   const mensajeElement = document.getElementById("mensaje");
@@ -110,4 +74,40 @@ function updateLastReservation(reservation) {
     p.textContent = detail;
     mensajeElement.appendChild(p);
   });
+}
+
+// Función para realizar la reserva
+function makeReservation(reservationDetails) {
+  fetch('https://martina491-dev.github.io/entregafinal-cabrera/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(reservationDetails),
+  })
+    .then(response => {
+      console.log('Response from server:', response);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .catch(error => {
+      console.error('Error en la solicitud al servidor:', error);
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un error al procesar la reserva. Por favor, inténtelo nuevamente.',
+      });
+    })
+    .then(data => {
+      console.log('Respuesta del servidor:', data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Reserva realizada con éxito',
+        text: 'En breve le enviaremos detalles por correo electrónico.',
+      });
+    });
+   
 }
